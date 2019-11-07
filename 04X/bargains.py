@@ -11,11 +11,10 @@ PRICE = 4
 COST = 5
 
 def usage():
-    print('usage: ./bargains.py file')
+    print('usage: ./bargains.py filename')
     exit(0)
 
 def main():
-    bargains = []
     try: filename = sys.argv[1]
     except: usage()
     with open(filename) as file:

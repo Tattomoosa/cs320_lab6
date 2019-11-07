@@ -10,15 +10,16 @@ def read_integer_graph(gname):
     graph = {}
     with open(f'{gname}.ig') as file:
         next(file); next(file)
-        for (v1, v2) in (int(s) for s in line.split() for line in file):
-            graph.setdefault(v1, []).append(v2)
+        [graph.setdefault(v1, []).append(v2)
+                for (v1, v2)
+                in (line.split() for line in file)]
     return graph
 
 def read_string_graph(gname, delim):
     graph = {}
     with open(f'{gname}.sg') as file:
-        for v in (line[:-1].split(delim) for line in file):
-            graph.setdefault(v[0], []).extend(v[1:])
+        [graph.setdefault(v[0], []).extend(v[1:])
+                for v in (line[:-1].split(delim) for line in file)]
     return graph
 
 def write_dot_graph(gname, g):
