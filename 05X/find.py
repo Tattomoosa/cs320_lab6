@@ -17,8 +17,10 @@ def copy(found, new_dir):
     path = f'{os.path.join(os.getcwd(), new_dir)}'
     if not os.path.exists(path):
         os.mkdir(path)
-    for f in found:
-        shutil.copyfile(f, os.path.join(path, f[1:].replace('/', '_')))
+    [shutil.copyfile(
+        f,
+        os.path.join(path, f[1:].replace('/', '_')))
+        for f in found]
 
 def main():
   if len(sys.argv) < 2: usage()
