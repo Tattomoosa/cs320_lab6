@@ -22,13 +22,10 @@ def main():
         products = [ [*d, int(d[QUANTITY]) * float(d[PRICE])]
                 for d in (line[:-1].split(',') for line in file) ]
         budget = sum(p[COST] for p in products)/len(products) * 1.5
-        bargains = [ p[NAME]
-                for p in products
-                if p[COST] < budget
-                and (p[GRADE] == 'superior'
-                or p[COLOR] == 'blue') ]
-        with open(f'{filename.split(".")[0]}.bargains', 'w') as out:
-            out.write('\n'.join(bargains))
+        print(*[p[NAME] for p in products if p[COST] < budget
+            and (p[GRADE] == 'superior' or p[COLOR] == 'blue')],
+            sep='\n',
+            end='')
 
 if __name__ == '__main__':
     main()
