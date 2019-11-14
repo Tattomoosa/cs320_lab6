@@ -31,8 +31,7 @@ def write_dot_graph(gname, g):
     print(f'graph {gname} {{')
     for v1 in g:
         edges = [f'"{v1}" -- "{v2}"' for v2 in g[v1] if v2 not in visited]
-        if len(edges) > 0:
-            print(*edges, sep='\n')
+        if len(edges) > 0: print(*edges, sep='\n')
         visited.append(v1)
     print('}')
 
